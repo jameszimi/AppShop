@@ -11,10 +11,12 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <include
                 layout="@layout/app_bar_main"
                 android:layout_width="match_parent"
@@ -33,32 +35,41 @@
                 app:srcCompat="@color/promohomecolor" />
             <!--ใส่ Action bar-->
             <android.support.design.widget.TabLayout
+                android:id="@+id/home_tabs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/home_tabs"
                 android:background="@color/colorPrimary"
                 android:backgroundTint="@color/colorPrimary"
                 app:tabIndicatorColor="@color/white"
                 app:tabSelectedTextColor="@color/yellow"
                 app:tabTextColor="@color/white">
+
                 <android.support.design.widget.TabItem
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
                     android:id="@+id/hometabs_pro"
-                    android:text="โปรโมชั่น"/>
-                <android.support.design.widget.TabItem
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:text="โปรโมชั่น" />
+
+                <android.support.design.widget.TabItem
                     android:id="@+id/hometabs_new"
-                    android:text="สินค้าใหม่"/>
-                <android.support.design.widget.TabItem
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:text="สินค้าใหม่" />
+
+                <android.support.design.widget.TabItem
                     android:id="@+id/hometabs_hot"
-                    android:text="สินค้าขายดี!"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="สินค้าขายดี!" />
             </android.support.design.widget.TabLayout>
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/container_home"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></android.support.v4.view.ViewPager>
         </LinearLayout>
     </FrameLayout>
+
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="280dp"
