@@ -8,11 +8,57 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
-    <include
-        layout="@layout/app_bar_main"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <include
+                layout="@layout/app_bar_main"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <!--ใส่รูปภาพ-->
+            <ImageView
+                android:id="@+id/promo_photo"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:adjustViewBounds="false"
+                android:paddingBottom="3dp"
+                android:paddingTop="3dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@color/promohomecolor" />
+            <!--ใส่ Action bar-->
+            <android.support.design.widget.TabLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/home_tabs"
+                android:background="@color/colorPrimary"
+                android:backgroundTint="@color/colorPrimary"
+                app:tabIndicatorColor="@color/white"
+                app:tabSelectedTextColor="@color/yellow"
+                app:tabTextColor="@color/white">
+                <android.support.design.widget.TabItem
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/hometabs_pro"
+                    android:text="โปรโมชั่น"/>
+                <android.support.design.widget.TabItem
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/hometabs_new"
+                    android:text="สินค้าใหม่"/>
+                <android.support.design.widget.TabItem
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/hometabs_hot"
+                    android:text="สินค้าขายดี!"/>
+            </android.support.design.widget.TabLayout>
+        </LinearLayout>
+    </FrameLayout>
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="280dp"
@@ -21,5 +67,4 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/activity_main_drawer" />
-
 </android.support.v4.widget.DrawerLayout>
