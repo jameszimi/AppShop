@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
+        //Part of navigation view item clicks here.
         int id = item.getItemId();
         switch (id) {
             //case R.id.nav_home:
@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity
 
         @Override
         public Fragment getItem(int position) {
-            // สร้าง getitem เพื่อ รับข้อมูลใน position แล้วนำไปใช้ switch หน้าใน case ต่างๆ
+            // สร้าง get item เพื่อ รับข้อมูลใน position แล้วนำไปใช้ switch หน้าใน case ต่างๆ
             switch (position) {
                 case 0:
                     return new PromoFragment();
