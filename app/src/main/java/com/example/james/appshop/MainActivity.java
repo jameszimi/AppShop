@@ -65,13 +65,9 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        //Part of navigation view item clicks here.
+        //ส่วนของ navigation view item จะตรวจ case จากที่นี่
         int id = item.getItemId();
-        switch (id) {
-            //case R.id.nav_home:
-            //    Intent h = new Intent(MainActivity.this,MainActivity.class);
-            //    startActivity(h);
-            //    break;
+        switch (id){
             case R.id.nav_login:
                 Intent l = new Intent(MainActivity.this,Login.class);
                 startActivity(l);
