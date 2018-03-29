@@ -16,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class Login extends AppCompatActivity
@@ -46,6 +47,16 @@ public class Login extends AppCompatActivity
         TextView textView = (TextView) findViewById(R.id.login_signup);
         textView.setText(spannableString);
         textView.setMovementMethod(new LinkMovementMethod());
+
+        String textforget = getString(R.string.forgetpass);
+        String linkforget = getString(R.string.forgetpass);
+        int startforget = textforget.indexOf(linkforget);
+        int endforget = startforget+linkforget.length();
+        SpannableString spanforget = new SpannableString(textforget);
+        spanforget.setSpan(new callforgetActivity(), startforget, endforget, 0);
+        TextView textfoget = (TextView) findViewById(R.id.login_forgetpass);
+        textfoget.setText(spanforget);
+        textfoget.setMovementMethod(new LinkMovementMethod());
 
     }
 
@@ -100,6 +111,16 @@ public class Login extends AppCompatActivity
         public void onClick(View view) {
             Intent callsigup = new Intent(Login.this, Signup.class);
             startActivity(callsigup);
+            finish();
+        }
+    }
+
+    private class callforgetActivity extends ClickableSpan {
+
+        @Override
+        public void onClick(View view) {
+            Intent callforget = new Intent(Login.this, Forgetpass.class);
+            startActivity(callforget);
             finish();
         }
     }
