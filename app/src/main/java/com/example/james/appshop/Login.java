@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.text.SpannableString;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class Login extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -32,6 +36,17 @@ public class Login extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        String textsigup = getString(R.string.sigupms);
+        String linktext = getString(R.string.sigupms);
+        int start = textsigup.indexOf(linktext);
+        int end = start+linktext.length();
+        SpannableString spannableString = new SpannableString(textsigup);
+        spannableString.setSpan(new callsigupactivity(), start, end, 0);
+        TextView textView = (TextView) findViewById(R.id.login_signup);
+        textView.setText(spannableString);
+        textView.setMovementMethod(new LinkMovementMethod());
+
     }
 
     @Override
@@ -78,5 +93,14 @@ public class Login extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private class callsigupactivity extends ClickableSpan {
+        @Override
+        public void onClick(View view) {
+            Intent callsigup = new Intent(Login.this, Signup.class);
+            startActivity(callsigup);
+            finish();
+        }
     }
 }

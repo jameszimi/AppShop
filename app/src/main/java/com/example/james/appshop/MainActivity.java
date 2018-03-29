@@ -4,6 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,6 +24,8 @@ public class MainActivity extends AppCompatActivity
     DrawerLayout drawer;
     NavigationView navigationView;
     Toolbar toolbar=null;
+    private ViewPager mViewPager;
+    private SectionsPagerAdapter mSectionsPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +43,13 @@ public class MainActivity extends AppCompatActivity
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        mViewPager = (ViewPager) findViewById(R.id.container_home);
+        mViewPager.setAdapter(mSectionsPagerAdapter);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.home_tabs);
+        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
     }
 
     @Override
@@ -51,13 +65,9 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
+        //ส่วนของ navigation view item จะตรวจ case จากที่นี่
         int id = item.getItemId();
-        switch (id) {
-            //case R.id.nav_home:
-            //    Intent h = new Intent(MainActivity.this,MainActivity.class);
-            //    startActivity(h);
-            //    break;
+        switch (id){
             case R.id.nav_login:
                 Intent l = new Intent(MainActivity.this,Login.class);
                 startActivity(l);
@@ -82,5 +92,46 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    //ส่วนของคลาส tab bar
+    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+
+        public SectionsPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            // สร้าง get item เพื่อ รับข้อมูลใน position แล้วนำไปใช้ switch หน้าใน case ต่างๆ
+            switch (position) {
+                case 0:
+                    return new PromoFragment();
+                case 1:
+                    return new NewFragment();
+                case 2:
+                    return new HotFragment();
+                default: return new PromoFragment();
+            }
+        }
+
+        @Override
+        public int getCount() {
+            //มีทั้งหมด 3 หน้า
+            return 3;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position) {
+                case 0:
+                    return "Promotion";
+                case 1:
+                    return "New";
+                case 2:
+                    return "Hot!";
+            }
+            return null;
+        }
     }
 }
