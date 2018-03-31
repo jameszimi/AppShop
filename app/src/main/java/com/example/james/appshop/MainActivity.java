@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawer;
     NavigationView navigationView;
-    Toolbar toolbar=null;
+    private Toolbar toolbar=null;
     private ViewPager mViewPager;
     private SectionsPagerAdapter mSectionsPagerAdapter;
 

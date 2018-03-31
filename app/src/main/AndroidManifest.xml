@@ -40,9 +40,17 @@
             android:name=".About"
             android:label="@string/title_activity_about"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Signup" />
+        <activity android:name=".Signup"
+            android:label="สมัครสมาชิก"
+            android:parentActivityName=".Login"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".Register" />
-        <activity android:name=".Forgetpass"></activity>
+        <activity android:name=".Forgetpass"
+            android:label="ลืมรหัสผ่าน"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName="com.example.james.appshop.Login"
+            >
+        </activity>
     </application>
 
 </manifest>
